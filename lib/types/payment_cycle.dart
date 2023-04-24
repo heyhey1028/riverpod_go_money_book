@@ -1,0 +1,4 @@
+enum PaymentCycle {
+  month,
+  year;
+}
