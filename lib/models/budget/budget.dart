@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'budget.freezed.dart';
+// json_serializable で生成されたファイルを読み込む
+part 'budget.g.dart';
 
 @freezed
 class Budget with _$Budget {
