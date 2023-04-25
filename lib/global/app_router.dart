@@ -60,7 +60,16 @@ final approuter = GoRouter(
     ),
     GoRoute(
       path: AppRouterPaths.registerSpending,
-      builder: (context, state) => const RegisterSpendingScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const RegisterSpendingScreen(),
+        transitionDuration: const Duration(milliseconds: 500),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+              opacity: animation.drive(CurveTween(curve: Curves.easeIn)),
+              child: child);
+        },
+      ),
     ),
     GoRoute(
       path: AppRouterPaths.signUp,
