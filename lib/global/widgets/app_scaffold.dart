@@ -1,7 +1,6 @@
 // statelesswidget with scaffold which receives body as parameter and has bottom navigation bar.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_go_money_book/features/register_spending/register_spending_screen.dart';
 import 'package:riverpod_go_money_book/global/app_router.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -46,17 +45,8 @@ class AppScaffold extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (_, __, ___) => const RegisterSpendingScreen(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(opacity: animation, child: child),
-            ),
-          );
-        },
+        onPressed: () =>
+            GoRouter.of(context).push(AppRouterPaths.registerSpending),
         child: const Icon(Icons.add),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_go_money_book/features/total_spendings/total_spending_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterSpendingScreen extends ConsumerWidget {
   const RegisterSpendingScreen({super.key});
@@ -12,15 +12,7 @@ class RegisterSpendingScreen extends ConsumerWidget {
           title: const Text('Register Spending'),
           leading: IconButton(
             icon: const Icon(Icons.close),
-            onPressed: () => Navigator.pop(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const TotalSpendingScreen(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(opacity: animation, child: child),
-              ),
-            ),
+            onPressed: () => context.pop(),
           )),
       body: const Center(
         child: Text('register spending screen'),

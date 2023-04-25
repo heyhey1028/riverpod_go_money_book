@@ -60,14 +60,17 @@ final approuter = GoRouter(
     ),
     GoRoute(
       path: AppRouterPaths.registerSpending,
+      parentNavigatorKey: _rootNavigatorKey,
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         child: const RegisterSpendingScreen(),
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 200),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-              opacity: animation.drive(CurveTween(curve: Curves.easeIn)),
-              child: child);
+          return SlideTransition(
+            position: Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)
+                .animate(animation),
+            child: child,
+          );
         },
       ),
     ),
