@@ -1,7 +1,7 @@
 // statelesswidget with scaffold which receives body as parameter and has bottom navigation bar.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_go_money_book/global/app_router.dart';
+import 'package:riverpod_go_money_book/core/app_router.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({

@@ -8,7 +8,7 @@ import 'package:riverpod_go_money_book/features/register_spending/register_spend
 import 'package:riverpod_go_money_book/features/spendings_list/spending/spending_screen.dart';
 import 'package:riverpod_go_money_book/features/spendings_list/spendings_list_screen.dart';
 import 'package:riverpod_go_money_book/features/total_spendings/total_spending_screen.dart';
-import 'package:riverpod_go_money_book/global/widgets/app_scaffold.dart';
+import 'package:riverpod_go_money_book/core/widgets/app_scaffold.dart';
 
 // AppRouterPaths class
 class AppRouterPaths {
