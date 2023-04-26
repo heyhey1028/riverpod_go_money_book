@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_go_money_book/features/budgets/budget_screen.dart';
-import 'package:riverpod_go_money_book/features/profile/profile_screen.dart';
-import 'package:riverpod_go_money_book/features/register_spending/register_spending_screen.dart';
-import 'package:riverpod_go_money_book/features/spendings_list/spending/spending_screen.dart';
-import 'package:riverpod_go_money_book/features/spendings_list/spendings_list_screen.dart';
-import 'package:riverpod_go_money_book/features/total_spendings/total_spending_screen.dart';
 import 'package:riverpod_go_money_book/core/widgets/app_scaffold.dart';
+import 'package:riverpod_go_money_book/features/budgets/budget_screen.dart';
+import 'package:riverpod_go_money_book/features/overview/views/total_spending_screen.dart';
+import 'package:riverpod_go_money_book/features/profile/profile_screen.dart';
+import 'package:riverpod_go_money_book/features/spendings/views/register_spending_screen.dart';
+import 'package:riverpod_go_money_book/features/spendings/views/spending_screen.dart';
+import 'package:riverpod_go_money_book/features/spendings/views/spendings_list_screen.dart';
 
 // AppRouterPaths class
 class AppRouterPaths {
