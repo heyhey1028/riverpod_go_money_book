@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:riverpod_go_money_book/models/budget/budget.dart';
+import 'package:riverpod_go_money_book/features/budgets/models/budget/budget.dart';
 
 part 'category.freezed.dart';
 part 'category.g.dart';

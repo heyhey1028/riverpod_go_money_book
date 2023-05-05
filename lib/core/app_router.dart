@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_go_money_book/core/widgets/app_scaffold.dart';
+import 'package:riverpod_go_money_book/features/authentication/presentation/widgets/sign_up_screen.dart';
 import 'package:riverpod_go_money_book/features/budgets/budget_screen.dart';
 import 'package:riverpod_go_money_book/features/overview/views/total_spending_screen.dart';
 import 'package:riverpod_go_money_book/features/profile/profile_screen.dart';
@@ -76,7 +77,19 @@ final approuter = GoRouter(
     ),
     GoRoute(
       path: AppRouterPaths.signUp,
-      builder: (context, state) => const ProfileScreen(),
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: SignUpScreen(),
+        transitionDuration: const Duration(milliseconds: 200),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)
+                .animate(animation),
+            child: child,
+          );
+        },
+      ),
     ),
   ],
 );

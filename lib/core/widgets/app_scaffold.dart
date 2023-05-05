@@ -1,9 +1,12 @@
 // statelesswidget with scaffold which receives body as parameter and has bottom navigation bar.
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_go_money_book/core/app_router.dart';
+import 'package:riverpod_go_money_book/features/authentication/presentation/widgets/sign_in_modal.dart';
+import 'package:riverpod_go_money_book/features/authentication/repositories/providers/auth_repository_provider.dart';
 
-class AppScaffold extends StatelessWidget {
+class AppScaffold extends ConsumerStatefulWidget {
   const AppScaffold({
     super.key,
     required this.body,
@@ -12,9 +15,34 @@ class AppScaffold extends StatelessWidget {
   final Widget body;
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _AppScaffoldState();
+}
+
+class _AppScaffoldState extends ConsumerState<AppScaffold> {
+  @override
+  void initState() {
+    ref.read(authRepositoryProvider).authStateChanges().listen((user) {
+      print('listening');
+      if (user == null) {
+        showDialog(
+          context: context,
+          builder: (
+            BuildContext context,
+          ) {
+            return const SignInModal();
+          },
+        );
+      }
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('rebuild');
+
     return Scaffold(
-      body: body,
+      body: widget.body,
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.blue,

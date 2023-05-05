@@ -1,14 +1,18 @@
 // stateful widget for sign in modal dialog with user name and password TextFormfields and text button to navigate to sign up screen.
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:riverpod_go_money_book/core/app_router.dart';
+import 'package:riverpod_go_money_book/features/authentication/presentation/controllers/sign_in_modal_controller.dart';
 
-class SignInModal extends StatefulWidget {
+class SignInModal extends ConsumerStatefulWidget {
   const SignInModal({super.key});
 
   @override
-  State<SignInModal> createState() => _SignInModalState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignInModalState();
 }
 
-class _SignInModalState extends State<SignInModal> {
+class _SignInModalState extends ConsumerState<SignInModal> {
   // global key for form.
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _userNameController = TextEditingController();
@@ -32,6 +36,9 @@ class _SignInModalState extends State<SignInModal> {
 
   @override
   Widget build(BuildContext context) {
+    print('signin modal build');
+    final state = ref.watch(signInModalControllerProvider);
+    print('state:$state');
     return AlertDialog(
       title: const Text('Sign in'),
       content: Form(
@@ -55,11 +62,7 @@ class _SignInModalState extends State<SignInModal> {
             ),
             TextButton(
               onPressed: () {
-                // Navigator.of(context).push<void>(
-                //   MaterialPageRoute(
-                //     builder: (context) => const SignUpScreen(),
-                //   ),
-                // );
+                GoRouter.of(context).push(AppRouterPaths.signUp);
               },
               child: const Text('Sign up'),
             ),
@@ -74,12 +77,19 @@ class _SignInModalState extends State<SignInModal> {
           child: const Text('Cancel'),
         ),
         TextButton(
-          onPressed: () {
+          onPressed: () async {
             if (_formKey.currentState!.validate()) {
-              Navigator.of(context).pop();
+              await ref.read(signInModalControllerProvider.notifier).signIn(
+                    _userNameController.text,
+                    _passwordController.text,
+                  );
+              if (mounted) {
+                Navigator.of(context).pop();
+              }
             }
           },
-          child: const Text('Sign in'),
+          child:
+              state ? const CircularProgressIndicator() : const Text('Sign in'),
         ),
       ],
     );
